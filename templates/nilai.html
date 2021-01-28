@@ -1,0 +1,35 @@
+{% extends 'navbar.html' %}
+{% block content%}
+<p></p>
+<div class="container mt-10">
+    <div class="row text-center">
+        <div class="col">
+            <h3>NILAI MAHASISWA</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md">
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Mata Kuliah</th>
+                    <th scope="col">Nilai Akhir</th>
+                    <th scope="col">Grade Nilai</th>
+                </tr>
+                </thead>
+                <tbody>
+                {%for i in data_nilai%}
+                  <tr>
+                    {% for a in i%}
+                    <td>{{ a }}</td>
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

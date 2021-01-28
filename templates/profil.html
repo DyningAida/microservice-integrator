@@ -1,0 +1,85 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<p></p>
+<div id="app">
+    <div class="container mt-10 ">
+        <div class="row text-center">
+            <div class="col">
+                <h3>PROFIL MAHASISWA</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md">
+                <table>
+                    {%for i in data%}
+                    <tr>
+                        <td>ID Mahasiswa</td>
+                        <td>:</td>
+                        <td>{{ i[0] }}</td>
+                    </tr>
+                    <tr>
+                        <td>ID Tahun</td>
+                        <td>:</td>
+                        <td>{{ i[10] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Nama Mahasiswa</td>
+                        <td>:</td>
+                        <td>{{ i[14] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Status Mahasiswa</td>
+                        <td>:</td>
+                        <td>{{ i[17] }}</td>
+                    </tr>
+                    <tr>
+                        <td>ID Program</td>
+                        <td>:</td>
+                        <td>{{ i[18] }}</td>
+                    </tr>
+                    <tr>
+                        <td>ID Prodi</td>
+                        <td>:</td>
+                        <td>{{ i[19] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Jenis Kelamin</td>
+                        <td>:</td>
+                        <td>{{ i[21] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Tempat Lahir</td>
+                        <td>:</td>
+                        <td>{{ i[24] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Tanggal Lahir</td>
+                        <td>:</td>
+                        <td>{{ i[25] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Agama</td>
+                        <td>:</td>
+                        <td>{{ i[26] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Alamat</td>
+                        <td>:</td>
+                        <td>{{ i[28] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Kota</td>
+                        <td>:</td>
+                        <td>{{ i[29] }}</td>
+                    </tr>
+                    <tr>
+                        <td>RT/RW</td>
+                        <td>:</td>
+                        <td>{{ i[30], i[31] }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>    
+</div>
+{% endblock %}

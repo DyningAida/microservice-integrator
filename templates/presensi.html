@@ -1,0 +1,25 @@
+{% extends 'navbar.html' %}
+{% block content%}
+<p></p>
+<div class="container mt-10">
+    <div class="row text-center">
+        <div class="col">
+            <h3>PRESENSI MAHASISWA</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md">
+            <table class="table">
+                <tbody>
+                  <tr>
+                    {% for a in data%}
+                    <td>{{ a }}</td>
+                    {% endfor %}
+                </tbody>
+              </table>
+            
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<p></p>
+<div class="container mt-10">
+    <div class="row">
+        <div class="col-md text-center">
+            <h3>JADWAL MATAKULIAH</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md">
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Id Hari</th>
+                    <th scope="col">Jam Mulai</th>
+                    <th scope="col">Jam Selesai</th>
+                    <th scope="col">Dosen ID</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Kode Matakuliah</th>
+                    <th scope="col">ID Jadwal</th>
+                    <th scope="col">ID Mahasiswa</th>  
+                </tr>
+                </thead>
+                <tbody>
+                {%for i in data%}
+                  <tr>
+                    {% for a in i%}
+                    <td>{{ a }}</td>
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

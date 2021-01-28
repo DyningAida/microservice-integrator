@@ -1,0 +1,75 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<p></p>
+    <div class="jumbotron jumbotron-fluid container mt-10 ">
+        <div class="row text-center">
+            <div class="col-md text-center">
+                <h3>DOSEN</h3>
+            </div>
+        </div>
+        <div class=" container">
+            <div class="row">
+                <div class="col-md">
+                    <div class="card-group">
+                        <div class="card" style="width: 18rem;">
+                            {%for i in data%}
+                            <div class="card-body">
+                              <h5 class="card-header">
+                                <p font-size="8">{{ i[80] }}</p>
+                              </h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <tr>
+                                        <td> Prodi </td>
+                                        <td>:</td>
+                                        {% if i[5] == ".14." %}
+                                        <td>Diploma IV</td>
+                                        {% else %}
+                                        <td>Diploma III</td>
+                                        {% endif %}
+                                    </tr>
+                            </li>
+                            <li class="list-group-item">
+                                <tr>
+                                    <td> Kode Dosen </td>
+                                    <td>:</td>
+                                    <td>{{ i[21] }}</td>
+                                </tr>
+                        </li>
+                        <li class="list-group-item">
+                            <tr>
+                                <td> Email </td>
+                                <td>:</td>
+                                <td>{{ i[88] }}</td>
+                            </tr>
+                        </li>
+                        <li class="list-group-item">
+                            <tr>
+                                <td> Kontak </td>
+                                <td>:</td>
+                                <td><a href="https://api.whatsapp.com/send?phone={{ i[87] }}">https://api.whatsapp.com/send?phone={{ i[87] }}</a></td>
+                            </tr>
+                        </li>
+
+                              <li class="list-group-item">
+                                      <tr>
+                                          <td> Matkul </td>
+                                          <td>:</td>
+                                          <td>{{ i[12] }}</td>
+                                      </tr>
+                              </li>
+                              <li class="list-group-item">
+                                <tr>
+                                    <td>Kode Matakuliah</td>
+                                    <td>:</td>
+                                    <td>{{ i[11] }}</td>
+                                </tr>
+                              </li>
+                            </ul>
+                            {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

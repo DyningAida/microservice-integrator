@@ -1,7 +1,6 @@
 {% extends 'navbar.html' %}
 {% block content %}
 <p></p>
-<div id="app">
     <div class="container mt-10 ">
         <div class="row text-center">
             <div class="col">
@@ -10,10 +9,10 @@
         </div>
         <div class="row">
             <div class="col-md">
-                <table>
+                <table class="table table-borderless">
                     {%for i in data%}
                     <tr>
-                        <td>ID Mahasiswa</td>
+                        <td>Nomor Pokok Mahasiswa</td>
                         <td>:</td>
                         <td>{{ i[0] }}</td>
                     </tr>
@@ -30,22 +29,30 @@
                     <tr>
                         <td>Status Mahasiswa</td>
                         <td>:</td>
-                        <td>{{ i[17] }}</td>
+                        {% if i[17] == 'A' %}
+                        <td>Aktif</td>
+                        {% else %}
+                        <td>Tidak Aktif</td>
+                        {% endif %}
                     </tr>
                     <tr>
-                        <td>ID Program</td>
+                        <td>Program</td>
                         <td>:</td>
                         <td>{{ i[18] }}</td>
                     </tr>
                     <tr>
-                        <td>ID Prodi</td>
+                        <td>Kode Prodi</td>
                         <td>:</td>
                         <td>{{ i[19] }}</td>
                     </tr>
                     <tr>
                         <td>Jenis Kelamin</td>
                         <td>:</td>
-                        <td>{{ i[21] }}</td>
+                        {% if i[21] == 'P' %}
+                        <td>Perempuan</td>
+                        {% else %}
+                        <td>Laki-Laki</td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>Tempat Lahir</td>
@@ -60,7 +67,19 @@
                     <tr>
                         <td>Agama</td>
                         <td>:</td>
-                        <td>{{ i[26] }}</td>
+                        {% if i[26] == 'I' %}
+                        <td>Islam</td>
+                        {% elif i[26] == 'K' %}
+                        <td>Katholik</td>
+                        {% elif i[26] == 'P' %}
+                        <td>Protestan</td>
+                        {% elif i[26] == 'B' %}
+                        <td>Buddha</td>
+                        {% elif i[26] == 'H' %}
+                        <td>Hindu</td>
+                        {% else %}
+                        <td>Belum diisi</td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>Alamat</td>
@@ -75,11 +94,11 @@
                     <tr>
                         <td>RT/RW</td>
                         <td>:</td>
-                        <td>{{ i[30], i[31] }}</td>
+                        <td>{{ i[30] }}/{{ i[31] }}</td>
                     </tr>
                     {% endfor %}
                 </table>
             </div>
-        </div>    
+        </div>
 </div>
 {% endblock %}

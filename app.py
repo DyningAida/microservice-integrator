@@ -6,15 +6,18 @@ from flask_json import FlaskJSON, JsonError, json_response, as_json
 from authlib.integrations.flask_client import OAuth
 import pymysql
 import os
+import sys
 from datetime import timedelta
 import config
 
+sys.path.insert(0, os.path.dirname(__file__))
+
 def db_connect():
-    return pymysql.connect(host='localhost', user='anggaganteng', password='anggagantengbanget', database='simpati', port=3307)
+    return pymysql.connect(host='localhost', user='micropol_dyning', password='Date290200!', database='micropol_test', port=3306)
 
 def verifikasi_username_password(username, password):
     db = db_connect()
-    sql = f"select * from simak_mst_mahasiswa where Login={username} and password = SUBSTRING(MD5(MD5('{password}')), 1, 10)"
+    sql = f"select * from simak_mst_mahasiswa where Login={username} AND password = SUBSTRING(MD5(MD5('{password}')), 1, 10)"
     with db:
         cur = db.cursor()
         cur.execute(sql)
@@ -62,20 +65,20 @@ def authgoogle():
     user = oauth.google.parse_id_token(token)
     session['user'] = user
     session.permanent = True
-    google_provider_cfg = get_google_provider_cfg()
-    authorization_endpoint = google_provider_cfg["authorization_endpoint"]
-    email_google = request.args.get('userinfo.email')
-    email_siap = f"select Email from simak_mst_mahasiswa where Email='{email_google}'"
-    if session['user'] == email_siap:
-        return redirect('/home')
-    else:
+    #google_provider_cfg = get_google_provider_cfg()
+    #authorization_endpoint = google_provider_cfg["authorization_endpoint"]
+    #email_google = request.args.get('userinfo.email')
+    #email_siap = f"select Email from simak_mst_mahasiswa where Email='{email_google}'"
+    #if session['user'] == email_siap:
+    return redirect('/home')
+    #else:
         #return redirect('/home')
-        return 'Gunakan Email yang terdaftar di SIAP'
+    #    return 'Gunakan Email yang terdaftar di SIAP'
 
 @app.route('/google_login')
 def google_login():
-    #oauth.create_client()
-    request.get(CONF_URL).json()
+    #oauth.create_client('google')
+    #Request.args.get(CONF_URL).json()
     redirect_uri = config.FN_BASE_URL + url_for('authgoogle')
     return oauth.google.authorize_redirect(redirect_uri)
 
@@ -155,7 +158,7 @@ def home_profil():
 def profil_mhs():
     if 'username' in session :
         db = db_connect()
-        sql = f"select *from simak_mst_mahasiswa where MhswID='{session['username']}'"
+        sql = f"select * from simak_mst_mahasiswa where MhswID='{session['username']}'"
         with db:
             cur = db.cursor()
             cur.execute(sql)
@@ -168,8 +171,7 @@ def profil_mhs():
 def jadwal_mhs():
     if 'username' in session :
         db = db_connect()
-        sql = f"""select a.HariID, a.JamMulai, a.JamSelesai, a.DosenID, a.Nama, a.MKKode, b.JadwalID,
-        c.MhswID 
+        sql = f"""select a.HariID, a.JamMulai, a.JamSelesai, a.DosenID, a.Nama, a.MKKode, b.JadwalID
         from  simak_trn_jadwal as a 
         JOIN 
         simak_trn_krs as b ON a.JadwalID = b.JadwalID 
@@ -217,6 +219,6 @@ def dosen():
     else :
         return render_template('login.html')
 
-
-app.run(debug=True)
+#if __name__ == '__main__'
+#    app.run(debug=True)
 

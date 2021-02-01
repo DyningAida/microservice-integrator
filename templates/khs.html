@@ -1,0 +1,40 @@
+{% extends 'navbar.html' %}
+{% block content%}
+<p></p>
+<div class="container mt-10">
+    <div class="row text-center">
+        <div class="col">
+            <h3>KARTU HASIL STUDI</h3>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Tahun ID</th>
+                        <th scope="col">Status Mahasiswa</th>
+                        <th scope="col">Jumlah SKS</th>
+                        <th scope="col">IPS (Indeks Prestasi Sementara)</th>
+                        <th scope="col">IP (Indeks Prestasi)</th>
+                      <tr>
+                    </thead>
+                    <tbody>
+                        {% for i in data %}
+                    <tr>
+                        <td>{{ i[1] }}</td>
+                        <td>{{ i[6] }}</td>
+                        <td>{{ i[8] }}</td>
+                        <td>{{ i[20] }}</td>
+                        <td>{{ i[9] }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    
+    
+</div>
+{% endblock %}

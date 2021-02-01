@@ -1,0 +1,38 @@
+{% extends 'navbar.html' %}
+{% block content%}
+<p></p>
+<div class="container mt-10">
+    <div class="row text-center">
+        <div class="col">
+            <h3>DATA RUANGAN DI POLTEKPOS</h3>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                      <tr class="text-center">
+                        <th scope="col">Nama Ruang</th>
+                        <th scope="col">Lantai ke-</th>
+                        <th scope="col">Kapasitas</th>
+                      <tr>
+                    </thead>
+                    <tbody>
+                        {% for i in data %}
+                    <tr class="text-center">
+                        {% for a in i %}
+                        {%if a[0] %}
+                        <td>Ruang {{ a }}</td>
+                        {% else %}
+                        <td>{{ a }}</td>
+                        {% endif %}
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+</div>
+{% endblock %}

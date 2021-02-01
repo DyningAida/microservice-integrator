@@ -1,0 +1,34 @@
+{% extends 'navbar.html' %}
+{% block content%}
+<p></p>
+<div class="container mt-10">
+    <div class="row text-center">
+        <div class="col">
+            <h3>STRUKTUR POLITEKNIK POS INDONESIA</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md">
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Jabatan</th>
+                    <th scope="col">Nama</th>
+                </tr>
+                </thead>
+                <tbody>
+                {%for i in data%}
+                  <tr>
+                    {% for a in i%}
+                    <td>{{ a }}</td>
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

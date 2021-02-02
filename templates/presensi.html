@@ -18,13 +18,13 @@
                     </tr>
                 </thead>
                     <tbody>
-                        {% for a in data%}
+                {%for i in data%}
                   <tr>
-                    
-                        <td>{{ a }}</td>
-                   
-                </tr>
-                 {% endfor %}
+                    {% for a in i%}
+                    <td>{{ a }}</td>
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
                 </tbody>
               </table>
             

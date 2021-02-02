@@ -190,7 +190,7 @@ def presensi():
     if 'username' in session:
         db = db_connect()
         sql = f"""SELECT simak_trn_jadwal.Nama, simak_mst_tahun.Nama, simak_trn_presensi_mahasiswa.JenisPresensiID
-            from simak_trn_presensi_mahasiswa, simak_trn_jadwal, simak_mst_tahun where simak_trn_presensi_mahasiswa.MhswID = '{session['username']}'"""
+            from simak_trn_presensi_mahasiswa INNER JOIN simak_trn_jadwal ON simak_trn_presensi_mahasiswa.JadwalID = simak_trn_jadwal.JadwalID INNER JOIN simak_mst_tahun ON simak_mst_tahun.TahunID = simak_trn_jadwal.TahunID where simak_trn_presensi_mahasiswa.MhswID = '{session['username']}'"""
         with db:
             cur = db.cursor()
             cur.execute(sql)

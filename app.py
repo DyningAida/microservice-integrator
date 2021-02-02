@@ -32,7 +32,7 @@ def isLoggedIN():
             return True
         else:
             return False
-    except Exception as e:
+    except Exception:
         return False
 
 app = Flask(__name__)
@@ -42,7 +42,7 @@ app.secret_key = 'tes cobacoba'
 app.config.from_object('config')
 GOOGLE_CLIENT_ID = '613016628391-9e3v2n5on64j70sdr2kslsuhoc8a8fbv.apps.googleusercontent.com'
 GOOGLE_CLIENT_SECRET = 'BHQ_2O6Kia3Xk_yb4OuVRwVp'
-FN_BASE_URL = 'localhost:5000'
+FN_BASE_URL = 'micropoltekpos.xyz'
 CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
 oauth = OAuth(app)
 oauth.register(
@@ -189,9 +189,8 @@ def jadwal_mhs():
 def presensi():
     if 'username' in session:
         db = db_connect()
-        sql = f"""select * from simak_trn_presensi_mahasiswa as a INNER JOIN
-        simak_trn_jadwal as b ON a.JadwalID = b.JadwalID INNER JOIN simak_trn_krs as c ON
-        c.KRSID = a.KRSID where a.MhswID = {session['username']}"""
+        sql = f"""SELECT simak_trn_jadwal.Nama, simak_mst_tahun.Nama, simak_trn_presensi_mahasiswa.JenisPresensiID
+            from simak_trn_presensi_mahasiswa INNER JOIN simak_trn_jadwal ON simak_trn_presensi_mahasiswa.JadwalID = simak_trn_jadwal.JadwalID INNER JOIN simak_mst_tahun ON simak_mst_tahun.TahunID = simak_trn_jadwal.TahunID where simak_trn_presensi_mahasiswa.MhswID = '{session['username']}'"""
         with db:
             cur = db.cursor()
             cur.execute(sql)
@@ -216,6 +215,71 @@ def dosen():
             cur.execute(sql)
             data = cur.fetchall()
         return render_template ('dosen.html', data = data)
+    else :
+        return render_template('login.html')
+
+@app.route('/khs')
+def khs():
+    if 'username' in session:
+        db = db_connect()
+        sql = f"select * from simak_trn_khs  where MhswID = {session['username']}"
+        with db:
+            cur = db.cursor()
+            cur.execute(sql)
+            data = cur.fetchall()
+        return render_template ('khs.html', data = data)
+    else :
+        return render_template('login.html')
+
+@app.route('/perwalian')
+def perwalian():
+    if 'username' in session:
+        db = db_connect()
+        sql = f"select * from simak_trn_krs_perwalian where MhswID = {session['username']}"
+        with db:
+            cur = db.cursor()
+            cur.execute(sql)
+            data = cur.fetchall()
+        return render_template ('perwalian.html', data = data)
+    else :
+        return render_template('login.html')
+
+@app.route('/ruangan')
+def ruangan():
+    if 'username' in session:
+        db = db_connect()
+        sql = f"select RuangID , Lantai, Kapasitas from simak_mst_ruangan"
+        with db:
+            cur = db.cursor()
+            cur.execute(sql)
+            data = cur.fetchall()
+        return render_template ('ruangan.html', data = data)
+    else :
+        return render_template('login.html')
+        
+@app.route('/struktur')
+def struktur():
+    if 'username' in session:
+        db = db_connect()
+        sql = f"select Singkatan, Nama, Urutan from simak_mst_jenis_jabatan"
+        with db:
+            cur = db.cursor()
+            cur.execute(sql)
+            data = cur.fetchall()
+        return render_template ('struktur.html', data = data)
+    else :
+        return render_template('login.html')
+
+@app.route('/about')
+def about():
+    if 'username' in session:
+        db = db_connect()
+        sql = f"select * from simak_mst_kampus"
+        with db:
+            cur = db.cursor()
+            cur.execute(sql)
+            data = cur.fetchall()
+        return render_template ('index.html', data = data)
     else :
         return render_template('login.html')
 

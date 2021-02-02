@@ -12,8 +12,8 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <td>Jadwal</td>
-                        <td>KRS</td>
+                        <td>Nama Matakuliah</td>
+                        <td>Semester</td>
                         <td>Kehadiran</td>
                     </tr>
                 </thead>
@@ -21,9 +21,7 @@
                         {% for a in data%}
                   <tr>
                     
-                        <td>{{ a[1] }}</td>
-                        <td>{{ a[2] }}</td>
-                        <td>{{ a[5] }}</td>
+                        <td>{{ a }}</td>
                    
                 </tr>
                  {% endfor %}
